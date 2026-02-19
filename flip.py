@@ -37,11 +37,9 @@ def flip_face(face: str):
     return
 
 def combine_faces(faces, flippedFaces):
-
-     #  Get max length of face 
-    # pad that + 5 both sides
-
-    return
+    max_len = len(max(faces))
+    pad_len = 5
+    return [faces + ""*(max_len-len(face)+pad_len) + "|" + ""*pad_len + flip for face, flip in (faces, flippedFaces)]
 
 
 if __name__ == "main":
