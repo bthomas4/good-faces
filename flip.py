@@ -12,7 +12,7 @@
 # Linked list, then reverse, but keep in place paranthesis
 # Or construct reverse string in place
 
-from os import read
+import os
 
 
 def flip_file(filepath: str):
@@ -22,31 +22,49 @@ def flip_file(filepath: str):
 
     flippedFaces = [flip_face(face) for face in faces]
 
-    combinedFaces = combine_faces(faces, flippedFaces)
+    # combinedFaces = combine_faces(faces, flippedFaces)
 
-    return 
+    return flippedFaces
 
 
 def flip_face(face: str):
 
-    face_list = list(face)
+    faceList = list(face)
+    parenFliplist = list(map(flip_paren, faceList))
     # print(face_list)
-    face_list_rev = face_list[::-1]
-    print("".join(face_list), "", ("".join(face_list_rev)))
+    faceListRev = parenFliplist[::-1]
+    # finalFaceList = [i if (i == '(' or i == ')') else j for i, j in zip(faceList, faceListRev)]
+    # print("".join(faceList), "", "".join(faceListRev))
+    flipFace ="".join(faceListRev)
     # add () flips
-    return
+    return flipFace
+
+def flip_paren(char: str):
+    if char == '(':
+        return ')'
+    elif char == ')':
+        return '('
+    else:
+        return char
+    
 
 def combine_faces(faces, flippedFaces):
     max_len = len(max(faces))
-    pad_len = 5
-    return [faces + ""*(max_len-len(face)+pad_len) + "|" + ""*pad_len + flip for face, flip in (faces, flippedFaces)]
+    pad_len = 10
+    print(max_len)
+    return [face + str(len(face))+" "*(max_len-len(face)+pad_len) + "|" + " "*pad_len + flip for face, flip in zip(faces, flippedFaces)]
 
 
-if __name__ == "main":
+if __name__ == "__main__":
     print(0)
 
     # Command line ask for file name
     filepath = "faces.txt"
-    flip_file(filepath)
+    flippedFile = flip_file(filepath)
+
+    print("\n".join(flippedFile))
+    with open('output.txt', 'w') as file:
+        file.write("\n".join(flippedFile))
+    
 
     
