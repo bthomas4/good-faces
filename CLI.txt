@@ -2,7 +2,16 @@ Ideas
 
 
 Flip
+- Enter filepath
 - Confirm good?
+- Write to file / print
 
 
 Construction
+- Display options, input choice
+
+Random
+- Generate Random
+
+Stream
+- Continuosly generate
